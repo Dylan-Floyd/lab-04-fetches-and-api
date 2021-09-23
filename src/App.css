@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.pikachu {
+  position: fixed;
+  width: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -100px;
+  animation: App-logo-spin infinite .2s linear;
+}
