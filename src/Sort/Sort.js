@@ -29,7 +29,7 @@ export default class Sort extends Component {
 
     render() {
         return (
-            <div>
+            <div className="sort">
                 Sort by: 
                 <select onChange={this.handleSortKeyChange}>
                     <option value="pokemon">Name</option>

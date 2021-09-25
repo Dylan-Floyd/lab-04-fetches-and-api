@@ -46,3 +46,20 @@
   margin-left: -100px;
   animation: App-logo-spin infinite .2s linear;
 }
+
+.header {
+  border-bottom: 1px solid black;
+  background-color: rgb(255, 217, 1);
+}
+
+.sort {
+  margin: 4px;
+}
+
+select {
+  margin: 4px;
+}
+
+input {
+  margin: 4px;
+}
