@@ -8,7 +8,6 @@ export function namifyString(string) {
         char = char.toUpperCase();
         result += char + words[i].slice(1) + ' ';
     }
-    console.log(result);
     result.trimEnd();
     return result;
 }

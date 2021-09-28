@@ -7,6 +7,17 @@
     width: 200px;
     height: 280px;
     box-shadow: 5px 5px 9px 2px rgba(100, 100, 100, .7);
+    transition: transform .1s ease-in-out;
+}
+
+a.cardBorder, a.cardBorder:hover, a.cardBorder:focus, a.cardBorder:active {
+    text-decoration: none;
+    color:black
+}
+
+a.cardBorder:hover {
+    transform: scale(1.025);
+    cursor: pointer;
 }
 
 .cloudBG {
@@ -112,4 +123,22 @@
     font-size: 8px;
     background-image: linear-gradient(45deg, rgb(255, 224, 88), rgb(212, 151, 36), rgb(255, 228, 77), rgb(204, 143, 30));
     font-style: italic;
+}
+
+.big {
+    transform: scale(2);
+    transform-origin: top left;
+}
+
+.infoList {
+    margin: auto 0;
+    padding: 0 0;
+    list-style: none;
+    font-size: 12px;
+    text-align: left;
+    width: 80%;
+}
+
+.infoList>li {
+    margin-bottom: 5px;
 }
