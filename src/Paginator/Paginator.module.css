@@ -1,0 +1,12 @@
+.paginator {
+    padding: 5px 0;
+    background-color: rgb(255, 217, 1);
+    border-top: solid 1px black;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.paginator>span {
+    margin: 0 5px;
+}

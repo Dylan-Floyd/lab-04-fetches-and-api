@@ -1,75 +1,53 @@
 import React from 'react';
 import './App.css';
-import PokeList from './PokeList/PokeList.js';
-import Search from './Search/Search.js';
-import Sort from './Sort/Sort.js';
+import Home from './Home/Home.js';
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    NavLink
+} from "react-router-dom";
+import PokeBrowser from './PokeBrowser/PokeBrowser.js';
+import PokeDetail from './PokeDetail/PokeDetail.js';
 
 export default class App extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            pokemon: [],
-            error: false,
-            query: '',
-            sortKey: 'pokemon',
-            direction: 'asc',
-            loading: false
-        }
-    }
-
-    fetchPokemon = async (searchString) => {
-        if(!searchString) {
-            searchString = '';
-        }
-        this.setState({ loading: true });
-        await fetch('https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon='+this.state.query+'&sort='+this.state.sortKey+'&direction='+this.state.direction)
-            .then(response => response.json())
-            .then(json => {
-                this.setState({
-                    pokemon: json.results,
-                    loading: false
-                });
-            })
-            .catch(error => {
-                this.setState({ error: true });
-                console.log(error);
-            });
-    }
-
-    componentDidMount = () => {
-        this.fetchPokemon();
-    }
-
-    handleSubmit = e => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const query = formData.get('query');
-        this.setState({ query: query }, () => {
-            this.fetchPokemon();
-        });
-    }
-
-    handleSortChange = sortState => {
-        this.setState({
-            sortKey: sortState.sortKey,
-            direction: sortState.direction
-        }, () => {
-            this.fetchPokemon();
-        });
-    }
-
     render() {
         return (
-            <div className="App">
-                <div className="header">
-                    <Search submitHandler={this.handleSubmit} />
-                    <Sort changeHandler={this.handleSortChange} />
+            <Router>
+                <div>
+                    <nav>
+                        <h2>PokeDex</h2>
+                        <ul>
+                            <li>
+                                <NavLink to="/">Home</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/browse">Browse</NavLink>
+                            </li>
+                        </ul>
+                        {/* I hate this but it gets the links centered */}
+                        <h2 className="hidden">PokeDex</h2>
+                    </nav>
+
+                    {/* A <Switch> looks through its children <Route>s and
+                    renders the first one that matches the current URL. */}
+                    <Switch>
+                        <Route path="/browse">
+                            <PokeBrowser />
+                        </Route>
+                        <Route
+                            path="/pokemon/:id"
+                            exact
+                            render={(routerProps) => <PokeDetail {...routerProps} />}
+                            />
+                        <Route path="/" exact>
+                            <Home />
+                        </Route>
+                    </Switch>
                 </div>
-                { this.state.loading ? <img src="/pikachu.png" alt="pikachu" className="pikachu" /> : 
-                        <PokeList pokemonList={this.state.pokemon} />
-                }
-            </div>
+            </Router>
         );
     }
 }
