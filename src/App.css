@@ -94,3 +94,10 @@ a, a:focus, a:active {
 .hidden {
   visibility: hidden;
 }
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
